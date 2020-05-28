@@ -1,0 +1,68 @@
+<ion-content  *ngIf="browsed ==='content'">
+<ion-grid>
+    <ion-row>
+        <ion-col>{{ post.name }}</ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+     
+           
+             <div [innerHtml] = "post.description"></div>
+            
+        </ion-col>
+</ion-row> 
+</ion-grid>
+</ion-content>
+
+
+<ion-content  *ngIf="browsed === 'gallery'">
+<ion-row>
+<ion-img [src]="post.imagePath"></ion-img>
+</ion-row>
+</ion-content>
+
+
+<ion-content *ngIf="browsed === 'comments'" class="body">
+<ion-row>
+    <ion-col>
+         
+            <div class="speech-bubble-right" *ngFor = "let comment of post.comments">
+                   <ion-list>
+                       <ion-list-header>
+                           {{ comment.commentUser}}
+                       </ion-list-header>
+                       <ion-item lines="none">
+                           {{ comment.commentText}}
+                       </ion-item>
+                   </ion-list>
+                   <div class="speech-bubble-left" *ngFor="let reply of comment.commentReply">
+                        <ion-list>
+                                <ion-list-header>
+                                    {{ reply.replyUser}}
+                                </ion-list-header>
+                                <ion-item lines="none">
+                                    {{ reply.replyText}}
+                                </ion-item>
+                            </ion-list>
+                  </div>
+                </div>
+                
+            
+           
+
+    </ion-col>
+
+</ion-row>
+</ion-content>
+
+<ion-content  *ngIf="browsed === 'about'">
+
+<ion-row>
+    
+    <ion-item> 
+        Lorem Ipsuem, i dont know just some text
+    </ion-item>
+
+</ion-row>
+</ion-content>  
