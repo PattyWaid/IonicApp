@@ -1,5 +1,5 @@
-<ion-content  *ngIf="browsed ==='content'">
-<ion-grid>
+<ion-content  [scrollEvents]="true">
+<ion-grid  *ngIf="browsed ==='content'">
     <ion-row>
         <ion-col>{{ post.name }}</ion-col>
       </ion-row>
@@ -13,52 +13,46 @@
         </ion-col>
 </ion-row> 
 </ion-grid>
-</ion-content>
 
 
-<ion-content  *ngIf="browsed === 'gallery'">
-<ion-row>
+
+
+<ion-row *ngIf="browsed === 'gallery'">
 <ion-img [src]="post.imagePath"></ion-img>
 </ion-row>
-</ion-content>
 
 
-<ion-content *ngIf="browsed === 'comments'" class="body">
-<ion-row>
-    <ion-col>
-         
-            <div class="speech-bubble-right" *ngFor = "let comment of post.comments">
-                   <ion-list>
-                       <ion-list-header>
+
+
+
+        <ion-list scroll="true"  *ngIf="browsed === 'comments'">
+            
+             <div class="speech-bubble-right" *ngFor="let comment of post.comments">
+                          <h5>
                            {{ comment.commentUser}}
-                       </ion-list-header>
-                       <ion-item lines="none">
+                          </h5>
+                      
+                         <p>
                            {{ comment.commentText}}
-                       </ion-item>
-                   </ion-list>
+                        </p>
                    <div class="speech-bubble-left" *ngFor="let reply of comment.commentReply">
-                        <ion-list>
-                                <ion-list-header>
+                                <h5>
                                     {{ reply.replyUser}}
-                                </ion-list-header>
-                                <ion-item lines="none">
+                                </h5>
+                                <p>
                                     {{ reply.replyText}}
-                                </ion-item>
-                            </ion-list>
+                                </p>
                   </div>
                 </div>
-                
+
+
             
-           
+</ion-list>
+      
 
-    </ion-col>
 
-</ion-row>
-</ion-content>
 
-<ion-content  *ngIf="browsed === 'about'">
-
-<ion-row>
+<ion-row *ngIf="browsed === 'about'">
     
     <ion-item> 
         Lorem Ipsuem, i dont know just some text

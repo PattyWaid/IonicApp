@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Post } from '../../post.model';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { PostserviceService } from '../postservice.service';
+import { NavController, IonTabs } from '@ionic/angular';
 
 
 @Component({
@@ -20,8 +21,11 @@ export class PageDetailPage implements OnInit {
 
   ngOnInit() {
     this.activateRoute.paramMap.subscribe(paramsMap => {
-      if(!paramsMap.has('id')) {
-        return;
+      console.log(paramsMap.has('id'));
+      console.log(paramsMap.get('id') === 'undefined');
+      if(paramsMap.has('id') && paramsMap.get('id') === 'undefined') {
+        console.log(this.route.initialNavigation());
+        console.log("Params => ", paramsMap.get('id'));
       }
       const id = paramsMap.get('id');
       this.post = this.postService.getPostById(id);
@@ -32,12 +36,12 @@ export class PageDetailPage implements OnInit {
 
 
   onContentClicked() {
-    this.clicked = 'content';
+    // this.clicked = 'content';
     this.route.navigate(['./posts/'+ this.post.recId+ '/content']);
   }
 
   onGalleryClicked() {
-    this.clicked = 'gallery';
+    // this.clicked = 'gallery';
     this.route.navigate(['./posts/'+ this.post.recId+ '/gallery']);
   }
 

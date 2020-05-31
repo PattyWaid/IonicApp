@@ -3,12 +3,13 @@ import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { Post } from '../../../post.model';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-tabs-details',
   templateUrl: './tabs-details.component.html',
   styleUrls: ['./tabs-details.component.scss'],
 })
-export class TabsDetailsComponent implements OnInit {
+export class TabsDetailsComponent implements OnInit{
 
   @Input() post: Post;
   browsed: string;
@@ -27,7 +28,6 @@ export class TabsDetailsComponent implements OnInit {
     }
 
     if(this.activeRoute.url.split('/')[3] === 'comments'){
-      console.log(this.post.comments)
       this.browsed = 'comments';
     }
 

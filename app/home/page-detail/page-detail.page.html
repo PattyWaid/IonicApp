@@ -9,12 +9,12 @@
 
 
 
-<ion-content>
-    <app-tabs-details [post]="post"  style="overflow: scroll;"></app-tabs-details>
+<ion-content [scrollEvents]="true">
+    <app-tabs-details [post]="post"></app-tabs-details>
 </ion-content>
 
 
-
+<ion-toolbar>
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button (click) = "onContentClicked()">
@@ -38,3 +38,4 @@
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+</ion-toolbar>
