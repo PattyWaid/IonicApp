@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {  HttpClientModule } from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
-import { TabsDetailsComponent } from './home/page-detail/tabs-details/tabs-details.component';
 
 
 
@@ -19,7 +18,7 @@ import { TabsDetailsComponent } from './home/page-detail/tabs-details/tabs-detai
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, QuillModule.forRoot(), HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,

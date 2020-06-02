@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Post } from '../post.model';
 import { PostserviceService } from './postservice.service';
 import { take, map } from 'rxjs/operators';
+import { ModalController } from '@ionic/angular';
+import { PostFormComponent } from './post-form/post-form.component';
 
 
 @Component({
@@ -13,7 +15,7 @@ export class HomePage implements OnInit{
   
   posts: Post[] = [];
  
-  constructor(private postService: PostserviceService) {}
+  constructor(private postService: PostserviceService, private modalCtrl: ModalController) {}
 
   ngOnInit() {
     this.posts = this.postService.getAllPosts();
@@ -36,6 +38,15 @@ export class HomePage implements OnInit{
           return +post.recId %2 !== 0
     });
   }
+
+
+  async onPresentModal() {
+   const modal = await this.modalCtrl.create({
+    component: PostFormComponent
+  });
+  modal.present()
+  }
+  
   
 
 }
