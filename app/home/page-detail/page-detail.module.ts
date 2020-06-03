@@ -10,6 +10,7 @@ import { PageDetailPage } from './page-detail.page';
 import { TabsDetailsComponent } from './tabs-details/tabs-details.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,

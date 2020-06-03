@@ -1,9 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Post } from '../post.model';
 import { PostserviceService } from './postservice.service';
-import { take, map } from 'rxjs/operators';
 import { ModalController } from '@ionic/angular';
-import { PostFormComponent } from './post-form/post-form.component';
+
+import { PostFormPage } from './post-form/post-form.page';
+
 
 
 @Component({
@@ -40,13 +41,14 @@ export class HomePage implements OnInit{
   }
 
 
-  async onPresentModal() {
-   const modal = await this.modalCtrl.create({
-    component: PostFormComponent
-  });
-  modal.present()
+ async onPresentModal() {
+   
+   let modal = await this.modalCtrl.create({
+     component: PostFormPage
+   });
+   modal.present();
   }
   
   
 
-}
+}  

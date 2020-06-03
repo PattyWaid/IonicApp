@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     component: HomePage
   },
+   {
+    path: 'post-form',
+    loadChildren: () => import('./post-form/post-form.module').then( m => m.PostFormPageModule)
+  }, 
   
 ];
 
