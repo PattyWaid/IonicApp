@@ -1,62 +1,64 @@
-<ion-content  [scrollEvents]="true">
-<ion-grid  *ngIf="browsed ==='content'">
-    <ion-row>
-        <ion-col>{{ post.name }}</ion-col>
-      </ion-row>
-      
-      <ion-row>
-        <ion-col>
-     
-           
-             <div [innerHtml] = "post.description"></div>
-            
-        </ion-col>
-</ion-row> 
-</ion-grid>
+<ion-content>
 
 
 
+    <ion-grid *ngIf="clicked ==='content'">
+        <ion-row>
+            <ion-col>{{ post.name }}</ion-col>
+        </ion-row>
 
-<ion-row *ngIf="browsed === 'gallery'">
-<ion-img [src]="post.imagePath"></ion-img>
-</ion-row>
+        <ion-row>
+            <ion-col>
+
+                <div [innerHtml]="post.description"></div>
+
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
 
 
 
 
 
-        <ion-list scroll="true"  *ngIf="browsed === 'comments'">
-            
-             <div class="speech-bubble-right" *ngFor="let comment of post.comments">
-                          <h5>
-                           {{ comment.commentUser}}
-                          </h5>
-                      
-                         <p>
-                           {{ comment.commentText}}
-                        </p>
-                   <div class="speech-bubble-left" *ngFor="let reply of comment.commentReply">
-                                <h5>
-                                    {{ reply.replyUser}}
-                                </h5>
-                                <p>
-                                    {{ reply.replyText}}
-                                </p>
-                  </div>
-                </div>
+    <ion-row *ngIf="clicked === 'gallery'">
+        <ion-img [src]="post.imagePath"></ion-img>
+    </ion-row>
+
+    <ion-list scroll="true" *ngIf="clicked === 'comments'">
+
+        <div class="speech-bubble-right" *ngFor="let comment of post.comments">
+            <h5>
+                {{ comment.commentUser}}
+            </h5>
+
+            <p>
+                {{ comment.commentText}}
+            </p>
+            <div class="speech-bubble-left" *ngFor="let reply of comment.commentReply">
+                <h5>
+                    {{ reply.replyUser}}
+                </h5>
+                <p>
+                    {{ reply.replyText}}
+                </p>
+            </div>
+        </div>
 
 
-            
-</ion-list>
-      
+
+    </ion-list>
 
 
 
-<ion-row *ngIf="browsed === 'about'">
-    
-    <ion-item> 
-        Lorem Ipsuem, i dont know just some text
-    </ion-item>
 
-</ion-row>
-</ion-content>  
+    <ion-row *ngIf="clicked === 'about'">
+
+        <ion-item>
+            Lorem Ipsuem, i dont know just some text
+        </ion-item>
+
+    </ion-row>
+
+
+</ion-content>

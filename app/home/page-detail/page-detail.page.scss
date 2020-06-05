@@ -1,0 +1,6 @@
+ion-tab-button:focus {
+    ion-icon, ion-label {
+        color: var(--ion-color-primary) !important;
+        --ion-color-base: var(--ion-color-primary) !important;
+    }
+}

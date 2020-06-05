@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Post } from '../../post.model';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { PostserviceService } from '../postservice.service';
-import { NavController, IonTabs } from '@ionic/angular';
+
+
 
 
 @Component({
@@ -13,44 +14,54 @@ import { NavController, IonTabs } from '@ionic/angular';
 })
 export class PageDetailPage implements OnInit {
 
-  post: Post;
-  clicked: string;
+
+  id: number;
+  browsed: string;
+  title: string
 
 
   constructor(private route: Router, private activateRoute: ActivatedRoute, private postService: PostserviceService) { }
 
   ngOnInit() {
-    this.activateRoute.paramMap.subscribe(paramsMap => {
-      console.log(paramsMap.has('id'));
-      console.log(paramsMap.get('id') === 'undefined');
-      if(paramsMap.has('id') && paramsMap.get('id') === 'undefined') {
-        console.log(this.route.initialNavigation());
-        console.log("Params => ", paramsMap.get('id'));
+    console.log(this.activateRoute.paramMap.subscribe(
+        params => {
+        if(params.has('id')){
+
+        }
+        this.id = +params.get('id');
+        this.title = this.postService.getPostById(this.id).category;
       }
-      const id = paramsMap.get('id');
-      this.post = this.postService.getPostById(id);
-    });
+    ));
+    this.browsed = 'content'
   }
+
 
 
 
 
   onContentClicked() {
-    // this.clicked = 'content';
-    this.route.navigate(['./posts/'+ this.post.recId+ '/content']);
+    this.browsed = 'content';
+    
+    this.route.navigate(['/posts/'+ this.id+ '/content']);
+    
   }
 
   onGalleryClicked() {
-    // this.clicked = 'gallery';
-    this.route.navigate(['./posts/'+ this.post.recId+ '/gallery']);
+    this.browsed = 'gallery';
+
+    this.route.navigate(['./posts/'+ this.id+ '/gallery']);
   }
 
   onCommentsClicked() {
-    this.route.navigate(['./posts/' + this.post.recId+ '/comments']);
+    this.browsed = 'comments';
+
+    this.route.navigate(['./posts/' + this.id+ '/comments']);
   }
 
   onAboutClicked() {
-    this.route.navigate(['./posts/' + this.post.recId+ '/about']);
+    this.browsed = 'about';
+
+    this.route.navigate(['./posts/' + this.id+ '/about']);
   }
 
   

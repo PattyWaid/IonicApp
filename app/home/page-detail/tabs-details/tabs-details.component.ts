@@ -1,7 +1,8 @@
-import { Component, OnInit, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit,  Input } from '@angular/core';
 
 import { Post } from '../../../post.model';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { PostserviceService } from '../../postservice.service';
 
 
 @Component({
@@ -11,32 +12,29 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 })
 export class TabsDetailsComponent implements OnInit{
 
-  @Input() post: Post;
-  browsed: string;
+  post: Post;
+  @Input() clicked: string;
+ 
    
 
-  constructor(private activeRoute: Router) { }
+  constructor(private activeRoute: ActivatedRoute, private postService: PostserviceService) { }
 
   ngOnInit() {
-    if(this.activeRoute.url.split('/')[3] === 'content'){
-      this.browsed = 'content';
+
+    this.activeRoute.paramMap.subscribe(paramsMap => {
+
+      if(paramsMap.has('id') && paramsMap.get('id') === 'undefined') {
+      }
+      const id = paramsMap.get('id');
+      this.post = this.postService.getPostById(+id);
+    });
+
+    
     }
 
-    if(this.activeRoute.url.split('/')[3] === 'gallery'){
-      console.log("Inside Ga;;ery");
-      this.browsed = 'gallery';
-    }
-
-    if(this.activeRoute.url.split('/')[3] === 'comments'){
-      this.browsed = 'comments';
-    }
-
-    if(this.activeRoute.url.split('/')[3] === 'about'){
-
-      this.browsed = 'about';
-    }
-     
   
-    }
+
+  
+  
   
   }

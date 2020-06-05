@@ -12,7 +12,7 @@ export class PostFormPage implements OnInit {
   blogForm: FormGroup;
 
   editorStyle = {
-    height: '60%'
+    height: '65%'
   };
 
   category = [

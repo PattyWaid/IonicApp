@@ -11,13 +11,15 @@ import { TabsDetailsComponent } from './tabs-details/tabs-details.component';
 
 
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     PageDetailPageRoutingModule,
-  ],
+    ],
   declarations: [PageDetailPage, TabsDetailsComponent],
   entryComponents:[
   ]

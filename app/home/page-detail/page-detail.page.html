@@ -4,15 +4,16 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="posts"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{post.name}}</ion-title>
+    <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 
 <ion-content>
-    <app-tabs-details [post]="post"></app-tabs-details>
+    <app-tabs-details [clicked] = "browsed"></app-tabs-details> 
 </ion-content>
+
 
 
 <ion-toolbar>
@@ -23,17 +24,17 @@
       <ion-label>Content</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button  (click) = "onGalleryClicked()">
+    <ion-tab-button (click)="onGalleryClicked()">
       <ion-icon name="images-outline"></ion-icon>
       <ion-label>Gallery</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button (click) = "onCommentsClicked()">
+    <ion-tab-button (click)="onCommentsClicked()">
       <ion-icon name="chatbubbles-outline"></ion-icon>
       <ion-label>Comments</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button (click) = "onAboutClicked()">
+    <ion-tab-button (click)="onAboutClicked()">
       <ion-icon name="information-circle"></ion-icon>
       <ion-label>About</ion-label>
     </ion-tab-button>
