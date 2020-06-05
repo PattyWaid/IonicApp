@@ -5,12 +5,12 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Blank
+      My Blog
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-segment>
+<ion-segment  value="All">
     <ion-segment-button value="All" (click) = "onButtonAllClicked()">
       <ion-label>All</ion-label>
     </ion-segment-button>
@@ -26,7 +26,7 @@
 
   
 
-  <ion-virtual-scroll [items]="posts" approxItemHeight="270px">
+  <ion-virtual-scroll [items]="posts" approxItemHeight="350px">
       <ion-card *virtualItem="let item;" [routerLink] = "['./', item.recId]">
         <ion-item>
             <ion-avatar item-start>
@@ -42,8 +42,8 @@
         <img [src]="item.imagePath">
 
         <ion-card-content>
-            <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
-          </ion-card-content>
+          <p id="text">{{ item.description | commonPipe:60 }}</p>
+        </ion-card-content>
 
         <ion-row>
             <ion-col>
@@ -52,7 +52,7 @@
             </ion-col>
             <ion-col>
                 <ion-icon slot= "start" name="chatbubble-outline"></ion-icon>
-                <div>5 Comments</div>
+                <div>{{ item.comments  | commonPipe }} Comments</div>
             </ion-col>
             <ion-col align-self-right text-right>
               <ion-note slot="end">
@@ -61,11 +61,6 @@
             </ion-col>
           </ion-row>
       
-        <!-- <img [src]="item.imagePath" /> 
-        <ion-card-header>
-          <ion-card-subtitle>{{item.category}}</ion-card-subtitle>
-          <ion-card-title>{{item.name}}</ion-card-title>
-        </ion-card-header> -->
 
       </ion-card>
   </ion-virtual-scroll>

@@ -1,9 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, AfterViewChecked, DoCheck, AfterContentInit, AfterContentChecked, OnDestroy } from '@angular/core';
 import { Post } from '../post.model';
 import { PostserviceService } from './postservice.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, DomController } from '@ionic/angular';
 
 import { PostFormPage } from './post-form/post-form.page';
+import { Subscription } from 'rxjs';
 
 
 
@@ -12,31 +13,38 @@ import { PostFormPage } from './post-form/post-form.page';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
-  
-  posts: Post[] = [];
+export class HomePage implements OnInit, OnDestroy{
+
+  type: string
+  posts: Post[];
+  //subScription: Subscription;
  
   constructor(private postService: PostserviceService, private modalCtrl: ModalController) {}
 
   ngOnInit() {
+    this.type = 'All';
     this.posts = this.postService.getAllPosts();
+
   }
 
 
    onButtonAllClicked() {
-    this.posts = this.postService.getAllPosts()
+    this.posts = this.postService.getAllPosts();
+    
+    
   }
 
   onButtonListedClicked() { 
    this.posts = this.posts.filter(post =>{
           return +post.recId %2 === 0
+
     });
 
   }
 
   onButtonFeaturedClicked() {
     this.posts = this.posts.filter(post =>{
-          return +post.recId %2 !== 0
+         // return +post.recId %2 !== 0
     });
   }
 
@@ -47,6 +55,10 @@ export class HomePage implements OnInit{
      component: PostFormPage
    });
    modal.present();
+  }
+
+  ngOnDestroy(){
+    //this.subScription.unsubscribe();
   }
   
   

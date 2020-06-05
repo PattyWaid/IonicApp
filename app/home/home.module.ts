@@ -5,10 +5,10 @@ import { HomePage } from './home.page';
 
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { QuillModule } from 'ngx-quill';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostFormPageModule } from './post-form/post-form.module';
 import { PostFormPage } from './post-form/post-form.page';
+import { CommonPipe} from '../appwide-pipes.pipe';
+
 
 
 
@@ -18,9 +18,9 @@ import { PostFormPage } from './post-form/post-form.page';
     CommonModule,
     IonicModule,
     HomePageRoutingModule,
-    PostFormPageModule
+    PostFormPageModule, 
   ],
-  declarations: [HomePage],
+  declarations: [HomePage, CommonPipe],
   entryComponents: [PostFormPage],
 })
 export class HomePageModule {}

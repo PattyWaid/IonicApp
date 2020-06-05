@@ -28,7 +28,7 @@ export class TabsDetailsComponent implements OnInit{
       const id = paramsMap.get('id');
       this.post = this.postService.getPostById(+id);
     });
-
+    console.log(this.post.user);
     
     }
 

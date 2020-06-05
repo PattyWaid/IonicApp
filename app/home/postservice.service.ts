@@ -24,7 +24,7 @@ export class PostserviceService {
             comments:res[pos].comments,
             imagePath:res[pos].imagePath,
             description:res[pos].description,
-            userId:res[pos].userId,
+            user:res[pos].user,
             recId:+res[pos].recId,
             name:res[pos].name})
         }

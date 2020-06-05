@@ -23,7 +23,7 @@ export class PageDetailPage implements OnInit {
   constructor(private route: Router, private activateRoute: ActivatedRoute, private postService: PostserviceService) { }
 
   ngOnInit() {
-    console.log(this.activateRoute.paramMap.subscribe(
+    this.activateRoute.paramMap.subscribe(
         params => {
         if(params.has('id')){
 
@@ -31,7 +31,7 @@ export class PageDetailPage implements OnInit {
         this.id = +params.get('id');
         this.title = this.postService.getPostById(this.id).category;
       }
-    ));
+    );
     this.browsed = 'content'
   }
 

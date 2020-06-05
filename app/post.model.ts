@@ -7,6 +7,6 @@ export interface Post {
         imagePath: string
         name: string
         recId: number
-        userId: string
+        user: string
       
 }
