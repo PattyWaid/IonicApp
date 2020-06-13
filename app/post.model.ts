@@ -1,8 +1,10 @@
+import { Comments } from './comments.model';
+
 export interface Post {
 
 
         category: string
-        comments: []
+        comments: Comments[]
         description: string
         imagePath: string
         name: string

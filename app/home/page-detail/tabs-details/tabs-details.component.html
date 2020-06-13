@@ -25,16 +25,45 @@
         <ion-img [src]="post.imagePath"></ion-img>
     </ion-row>
 
-    <ion-list scroll="true" *ngIf="clicked === 'comments'">
+
+
+<ion-grid *ngIf="clicked === 'comments'">
+
+        <ion-row> 
+            <ion-col size="10" no-padding no-margin>
+              <ion-input type="text" class="form-control"
+              placeholder="Add Comment" #content></ion-input>
+            </ion-col>
+            <ion-col size="2" no-padding no-margin>
+              <ion-button expand="block" color="secondary" no-margin (click)="onCommentAdded(content)">
+              <ion-icon name="send-outline"></ion-icon>
+            </ion-button>
+            </ion-col>
+        </ion-row>
+
+    <ion-list scroll="true">
+
 
         <div class="speech-bubble-right" *ngFor="let comment of post.comments">
             <h5>
                 {{ comment.commentUser}}
+                <ion-label slot="end" (click)="onReplyClicked(comment.commentId)"> Reply </ion-label>
             </h5>
 
             <p>
                 {{ comment.commentText}}
             </p>
+            <ion-row  *ngIf = "replyClciked && comment.commentId === id"> 
+            <ion-col size="9">
+            <ion-input type="text" class="form-control"
+            placeholder="Add Comment" #replycontent></ion-input>
+            </ion-col>
+            <ion-col size="2">
+            <ion-button color="secondary" (click)="onReplyAdded(replycontent)">
+            <ion-icon name="send-outline"></ion-icon>
+            </ion-button>
+            </ion-col>
+            </ion-row>
             <div class="speech-bubble-left" *ngFor="let reply of comment.commentReply">
                 <h5>
                     {{ reply.replyUser}}
@@ -45,10 +74,10 @@
             </div>
         </div>
 
-
-
     </ion-list>
-
+ 
+    
+</ion-grid>
 
 
 

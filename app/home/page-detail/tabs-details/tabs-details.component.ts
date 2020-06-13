@@ -1,8 +1,9 @@
-import { Component, OnInit,  Input } from '@angular/core';
+import { Component, OnInit,  Input, ViewChild, ElementRef, ContentChild } from '@angular/core';
 
 import { Post } from '../../../post.model';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { PostserviceService } from '../../postservice.service';
+import { PostserviceService } from 'src/app/postservice.service';
+
 
 
 @Component({
@@ -14,6 +15,8 @@ export class TabsDetailsComponent implements OnInit{
 
   post: Post;
   @Input() clicked: string;
+  replyClciked: boolean;
+  id: number
  
    
 
@@ -27,9 +30,35 @@ export class TabsDetailsComponent implements OnInit{
       }
       const id = paramsMap.get('id');
       this.post = this.postService.getPostById(+id);
+      console.log("Tab Details OnINit");
+      console.log(this.postService.getPostById(+id));
+
     });
-    console.log(this.post.user);
+    console.log(typeof this.post.comments);
     
+    }
+
+    onCommentAdded(content: HTMLInputElement) {
+      const id = this.post.recId
+      const comment  = content.value;
+      //const user =  this.post.user
+      this.postService.addComments({commentText: comment, comments: id, commentUser: 'Dummy'})
+      this.ngOnInit();
+    }
+
+    onReplyClicked(commentId: number) {
+      this.id = commentId
+      this.replyClciked = true;
+    }
+
+
+    onReplyAdded(replycontent: HTMLInputElement){
+        const replyText = replycontent.value
+        const replyUser = this.post.user
+        const commentReply = this.id
+        this.postService.addReply({replyText: replyText, replyUser: replyUser, commentReply: commentReply })
+        this.ngOnInit();
+      
     }
 
   

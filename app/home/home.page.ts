@@ -1,10 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, AfterViewChecked, DoCheck, AfterContentInit, AfterContentChecked, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, AfterViewChecked, DoCheck, AfterContentInit, AfterContentChecked, OnDestroy, Input, Output } from '@angular/core';
 import { Post } from '../post.model';
-import { PostserviceService } from './postservice.service';
+import { PostserviceService } from '../postservice.service';
 import { ModalController, DomController } from '@ionic/angular';
 
 import { PostFormPage } from './post-form/post-form.page';
-import { Subscription } from 'rxjs';
+
 
 
 
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class HomePage implements OnInit, OnDestroy{
 
   type: string
-  posts: Post[];
+  posts: Post[] = [];
   //subScription: Subscription;
  
   constructor(private postService: PostserviceService, private modalCtrl: ModalController) {}
@@ -24,6 +24,8 @@ export class HomePage implements OnInit, OnDestroy{
   ngOnInit() {
     this.type = 'All';
     this.posts = this.postService.getAllPosts();
+  
+    //console.log("Home:", this.posts);
 
   }
 

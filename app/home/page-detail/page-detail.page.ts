@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked } from '@
 import { Post } from '../../post.model';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { PostserviceService } from '../postservice.service';
+import { PostserviceService } from 'src/app/postservice.service';
+
 
 
 
@@ -30,6 +31,7 @@ export class PageDetailPage implements OnInit {
         }
         this.id = +params.get('id');
         this.title = this.postService.getPostById(this.id).category;
+       this.postService.getPostById(this.id);
       }
     );
     this.browsed = 'content'

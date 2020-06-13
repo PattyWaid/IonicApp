@@ -8,7 +8,7 @@ import { PageDetailPageRoutingModule } from './page-detail-routing.module';
 
 import { PageDetailPage } from './page-detail.page';
 import { TabsDetailsComponent } from './tabs-details/tabs-details.component';
-import { CommonPipe } from 'src/app/appwide-pipes.pipe';
+
 
 
 

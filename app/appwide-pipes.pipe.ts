@@ -12,7 +12,7 @@ export class CommonPipe implements PipeTransform {
 
     if(typeof(value) === 'object'){
       if( value.length < 1) {
-        return null;
+        return 0;
       } else {
             return value.length; 
           }      

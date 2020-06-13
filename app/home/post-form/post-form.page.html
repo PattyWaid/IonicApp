@@ -13,7 +13,7 @@
       <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" [style]="editorStyle">
         <ion-row no-padding>
           <ion-col no-padding>
-            <ion-button expand="full" color="secondary" no-margin [disabled]="!blogForm.valid">Save</ion-button>
+            <ion-button expand="full" color="secondary" type = "submit" no-margin [disabled]="!blogForm.valid">Save</ion-button>
           </ion-col>
           <ion-col no-padding>
             <ion-button expand="full" color="secondary" no-margin (click)="onCancel()">Cancel</ion-button>
