@@ -13,7 +13,8 @@
       <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" [style]="editorStyle">
         <ion-row no-padding>
           <ion-col no-padding>
-            <ion-button expand="full" color="secondary" type = "submit" no-margin [disabled]="!blogForm.valid">Save</ion-button>
+            <ion-button expand="full" color="secondary" type = "submit" no-margin [disabled]="!blogForm.valid"
+            >{{ editMode == true ? 'Edit' : 'Save'}}</ion-button>
           </ion-col>
           <ion-col no-padding>
             <ion-button expand="full" color="secondary" no-margin (click)="onCancel()">Cancel</ion-button>
@@ -23,10 +24,10 @@
            
         <ion-row>
           <ion-col size="12">
-          <ion-select placeholder="Select One" class="form-control" 
+          <ion-select placeholder="Select Category" class="form-control" 
           formControlName="category">
               <ion-select-option [value]="cat"
-              *ngFor="let cat of category">{{ cat }}</ion-select-option>
+              *ngFor="let cat of categories" [selected]="category==cat">{{ cat }}</ion-select-option>
           </ion-select>
         </ion-col>
       </ion-row>

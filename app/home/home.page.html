@@ -27,7 +27,7 @@
   
 
   <ion-virtual-scroll [items]="posts" approxItemHeight="350px">
-      <ion-card *virtualItem="let item;" [routerLink] = "['./', item.recId]">
+      <ion-card *virtualItem="let item;">
         <ion-item>
             <ion-avatar item-start>
               <img [src]="item.imagePath">
@@ -35,10 +35,16 @@
 
                 <h2>{{item.name}}</h2>
 
-                <p>{{item.category}}</p>
+               <!-- <p>{{item.category}}</p>-->
+
+              <ion-buttons slot="end">
+
+            <ion-button (click)="onEditClicked(item.recId)"> <ion-icon name="create-outline"></ion-icon> </ion-button> |
+            <ion-button (click)="onDeleteClicked(item.recId)"> <ion-icon name="trash-outline"></ion-icon> </ion-button>
+        </ion-buttons>
 
         </ion-item>
-
+        <div [routerLink] = "['./', item.recId]">
         <img [src]="item.imagePath">
 
         <ion-card-content>
@@ -54,14 +60,15 @@
                 <ion-icon slot= "start" name="chatbubble-outline"></ion-icon>
                 <div>{{ item.comments  | commonPipe }} Comments</div>
             </ion-col>
+
             <ion-col align-self-right text-right>
               <ion-note slot="end">
                 11h ago
               </ion-note>
             </ion-col>
           </ion-row>
-      
-
+       
+        </div>
       </ion-card>
   </ion-virtual-scroll>
 

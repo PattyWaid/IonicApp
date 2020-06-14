@@ -37,7 +37,23 @@ export class PostserviceService {
   getPostById(postid: number) {
     return this.http.get<Post>(`http://localhost:8000/posts/${postid}/`)
   }
+
+  deletePost(postid: number) {
+    this.http.delete(`http://localhost:8000/posts/${postid}/`).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+  }
  
+
+  updatePost(postid: number, updatedPost: Post){
+    this.http.put(`http://localhost:8000/posts/${postid}/`, updatedPost).subscribe(
+      res => {
+        console.log(res);
+      }
+    )
+  }
 
 
   createPost(post: Post){
