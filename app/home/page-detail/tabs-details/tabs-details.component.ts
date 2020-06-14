@@ -29,12 +29,11 @@ export class TabsDetailsComponent implements OnInit{
       if(paramsMap.has('id') && paramsMap.get('id') === 'undefined') {
       }
       const id = paramsMap.get('id');
-      this.post = this.postService.getPostById(+id);
-      console.log("Tab Details OnINit");
-      console.log(this.postService.getPostById(+id));
-
+      this.postService.getPostById(+id).subscribe(res =>{
+          this.post = res;
     });
-    console.log(typeof this.post.comments);
+    
+    });
     
     }
 
@@ -58,12 +57,8 @@ export class TabsDetailsComponent implements OnInit{
         const commentReply = this.id
         this.postService.addReply({replyText: replyText, replyUser: replyUser, commentReply: commentReply })
         this.ngOnInit();
-      
+        this.replyClciked = false;
     }
 
-  
-
-  
-  
   
   }

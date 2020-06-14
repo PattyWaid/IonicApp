@@ -2,7 +2,7 @@
 
 
 
-    <ion-grid *ngIf="clicked ==='content'">
+    <ion-grid *ngIf="clicked ==='content' && post">
         <ion-row>
             <ion-col>{{ post.name }}</ion-col>
         </ion-row>
@@ -30,12 +30,12 @@
 <ion-grid *ngIf="clicked === 'comments'">
 
         <ion-row> 
-            <ion-col size="10" no-padding no-margin>
+            <ion-col size="9" no-padding no-margin>
               <ion-input type="text" class="form-control"
               placeholder="Add Comment" #content></ion-input>
             </ion-col>
             <ion-col size="2" no-padding no-margin>
-              <ion-button expand="block" color="secondary" no-margin (click)="onCommentAdded(content)">
+              <ion-button color="secondary" (click)="onCommentAdded(content)">
               <ion-icon name="send-outline"></ion-icon>
             </ion-button>
             </ion-col>

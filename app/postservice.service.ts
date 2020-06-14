@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Post } from './post.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Comments } from './comments.model';
 import { CommentReply } from './comment-reply.model';
 
@@ -14,10 +14,7 @@ export class PostserviceService {
 
   post: Post[] = [];
 
- 
-
   constructor(public http: HttpClient) { }
-
 
   getAllPosts() {
       this.http.get<Post>('http://localhost:8000/posts/').subscribe(res =>{
@@ -38,30 +35,7 @@ export class PostserviceService {
   }
 
   getPostById(postid: number) {
-
-    // let post;
-    // this.http.get<Post>('http://localhost:8000/posts/').subscribe(res =>{
-    //   for(let pos in res){
-    //     if(res[pos].recId === postid){
-    //       console.log("Inside Response:", res[pos]);
-    //       post.push({
-    //         category:res[pos].category,
-    //         comments:res[pos].comments,
-    //         imagePath:res[pos].imagePath,
-    //         description:res[pos].description,
-    //         user:res[pos].user,
-    //         recId:+res[pos].recId,
-    //         name:res[pos].name})
-    //     }
-    //   }
-        
-    //   });
-    // return post;
-    return {
-      ...this.post.find(post => {
-      return post.recId === postid;
-    })};
-  
+    return this.http.get<Post>(`http://localhost:8000/posts/${postid}/`)
   }
  
 

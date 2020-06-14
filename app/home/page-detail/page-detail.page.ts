@@ -30,11 +30,16 @@ export class PageDetailPage implements OnInit {
 
         }
         this.id = +params.get('id');
-        this.title = this.postService.getPostById(this.id).category;
-       this.postService.getPostById(this.id);
+        this.postService.getPostById(this.id).subscribe(
+          res => this.title = res.category
+          
+        );
+        this.browsed = 'content'
+       //this.postService.getPostById(this.id);
       }
+      
     );
-    this.browsed = 'content'
+    
   }
 
 
